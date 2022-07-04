@@ -6,29 +6,21 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Índice</summary>
   <ol>
-    <li>
-      <a href="#sobre-o-projeto">Sobre o projeto</a>
-      <ul>
-        <li><a href="#tecnologias-utilizadas">Tecnologias utilizadas</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#iniciando">Iniciando</a>
-      <ul>
-        <li><a href="#prerequisitos">Prerequisitos</a></li>
-      </ul>
-    </li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#sobre-o-projeto">Sobre o projeto</a></li>
+    <li><a href="#tecnologias-utilizadas">Tecnologias utilizadas</a></li>
+    <li><a href="#requisitos-necessários">Requisitos necessários</a></li>
+    <li><a href="#como-utilizar">Como utilizar</a></li>
+    <li><a href="#licença-e-referências">Licença e referências</a></li>
+    <li><a href="#contato">Contato</a></li>
   </ol>
 </details>
 
 
 
 <!-- ABOUT THE PROJECT -->
-## Desafio Final - Drone API
+## Sobre o projeto
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
@@ -43,7 +35,7 @@ Basicamente é um backend RESTful, que fornece um CRUD para os seguintes endpoin
 
 
 
-### Tecnologias utilizadas
+## Tecnologias utilizadas
 
 Estas foram algumas das tecnologias utilizadas neste projeto:
 
@@ -55,19 +47,16 @@ Estas foram algumas das tecnologias utilizadas neste projeto:
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
-<!-- GETTING STARTED -->
-## Iniciando
-
-[ OBSERVAÇÃO ] - Para poder rodar a aplicação é necessário ter o [ DOCKER ] instalado na máquina.
-
-### Prerequisitos
+## Requisitos Necessários
+[ OBSERVAÇÃO ] - Para poder rodar a aplicação é necessário ter o [Docker](https://docs.docker.com/) instalado na máquina.
 
 Site do docker 
-* Docker
-* https://docs.docker.com/engine/install/ubuntu/
+* https://docs.docker.com/engine/install/
 
-### Uso
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+## Como utilizar
 
 Siga os passos abaixo para colocar o app em produção:
 
@@ -76,24 +65,31 @@ Siga os passos abaixo para colocar o app em produção:
    ```sh
    git clone git@github.com:Barros99/desafio-final.git
    ```
-3. Entre na pasta raiz do projeto
+2. Entre na pasta raiz do projeto
    ```sh
    cd desafio-final
    ```
-4. Digite o seguinte comando para inicializar a aplicação
+3. Digite o seguinte comando para inicializar a aplicação
    ```js
    docker-compose up -d
    ```
-5. Coloque o endereço abaixo em seu navegador
+4. Para acessar o endpoint do drone, copie e cole o endereço abaixo no seu navegador
    ```js
    http://localhost/drone
    ```
-
+5. Para acessar o endpoint do delivery, copie e cole o endereço abaixo no seu navegador
+   ```js
+   http://localhost/delivery
+   ```
+6. Para acessar o endpoint do vídeo, copie e cole o endereço abaixo no seu navegador
+   ```js
+   http://localhost/video
+   ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- LICENSE -->
-## License and References
+## Licença e Referências
 
 Distribuído sob a licença MIT.
 
@@ -106,7 +102,7 @@ A classe video foi baseada no exemplo do https://github.com/jobyywilson/fileuplo
 
 
 <!-- CONTACT -->
-## Contact
+## Contato
 
 Project Link: [https://github.com/Barros99/desafio-final](https://github.com/Barros99/desafio-final)
 
