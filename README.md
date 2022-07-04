@@ -32,11 +32,12 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Este README foi baseado neste site: https://github.com/othneildrew/Best-README-Template
+Esse projeto é um desafio final para a acelaração em Java, fornecido pela [Trybe](https://www.betrybe.com/) em parceria com a [CI&T](https://ciandt.com/br/)
 
-Este projeto visa mostrar a integração do frontend com o backend, juntamente com o mongoDB.
-
-É um to-do-list. Não está 100% mas ainda vou melhorá-lo aos poucos devido ao tempo corrido.
+Basicamente é um backend RESTful, que fornece um CRUD para os seguintes endpoints:
+* /drone
+* /delivery
+* /video
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -85,16 +86,20 @@ Siga os passos abaixo para colocar o app em produção:
    ```
 5. Coloque o endereço abaixo em seu navegador
    ```js
-   http://localhost:8080/drone
+   http://localhost/drone
    ```
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- LICENSE -->
-## License
+## License and References
 
 Distribuído sob a licença MIT.
+
+Este README foi baseado neste site: https://github.com/othneildrew/Best-README-Template
+
+A classe video foi baseada no exemplo do https://github.com/jobyywilson/fileupload-db
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -105,7 +110,11 @@ Distribuído sob a licença MIT.
 
 Project Link: [https://github.com/Barros99/desafio-final](https://github.com/Barros99/desafio-final)
 
-Jean Barros - [linkedIn](https://www.linkedin.com/in/j3anbarros/)
+Jean Barros - [linkedIn.com/in/j3anbarros/](https://www.linkedin.com/in/j3anbarros/)
+
+Henrique Souza - [linkedin.com/in/ricknois](https://www.linkedin.com/in/ricknois/)
+
+Matheus Schreiner - [linkedin.com/in/matheus-schreiner/](https://www.linkedin.com/in/matheus-schreiner/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
