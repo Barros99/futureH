@@ -63,11 +63,11 @@ Siga os passos abaixo para colocar o app em produção:
 
 1. Clone o repositório
    ```sh
-   git clone git@github.com:Barros99/desafio-final.git
+   git clone git@github.com:Barros99/futureh.git
    ```
 2. Entre na pasta raiz do projeto
    ```sh
-   cd desafio-final
+   cd futureh
    ```
 3. Digite o seguinte comando para inicializar a aplicação
    ```js
