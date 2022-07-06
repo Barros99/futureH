@@ -1,5 +1,6 @@
 package com.future8.droneapp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 import javax.persistence.CascadeType;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,9 +22,9 @@ public class Delivery {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "drone_id")
-  @OneToOne(fetch = FetchType.LAZY)
-  @JsonIgnore
+  @JsonBackReference
   private Drone drone;
 
   @OneToOne(
@@ -38,15 +40,6 @@ public class Delivery {
   private String status;
 
   public Delivery() {}
-
-  /** Method to create a new delivery. */
-  public Delivery(
-      Drone drone, LocalDate deliveredDate, String destiny, String status) {
-    this.drone = drone;
-    this.deliveredDate = deliveredDate;
-    this.destiny = destiny;
-    this.status = status;
-  }
 
   public Integer getId() {
     return id;
