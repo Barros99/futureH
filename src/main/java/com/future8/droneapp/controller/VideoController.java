@@ -1,11 +1,17 @@
 package com.future8.droneapp.controller;
 
+import com.future8.droneapp.dto.VideoDto;
+import com.future8.droneapp.exception.VideoNotFoundException;
 import com.future8.droneapp.model.Video;
+import com.future8.droneapp.service.FileSystemVideoService;
 import com.future8.droneapp.service.VideoService;
-import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,51 +24,62 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/video")
 public class VideoController {
 
-  @Autowired private VideoService videoService;
+  @Autowired private final VideoService videoService;
+  @Autowired private FileSystemVideoService fileSystemVideoService;
 
-  /**
-   * Creates a new video and saves it to the database.
-   *
-   * @param id The id of the delivery to which the video belongs.
-   * @param video The video file.
-   * @return The newly created video.
-   * @throws IOException If the video file could not be read.
-   */
-  @PostMapping("/{id}")
-  public Video uploadAndSave(
-      @PathVariable("id") Integer id, @RequestParam("video") MultipartFile video)
-      throws IOException {
-    return videoService.uploadAndSave(id, video);
+  public VideoController(VideoService videoService) {
+    this.videoService = videoService;
   }
 
-  /**
-   * Returns the video with the given id.
-   *
-   * @param id The id of the video to return.
-   * @return The video with the given id.
-   */
-  @GetMapping("/{id}")
-  public Video getVideoById(@PathVariable("id") Integer id) {
-    return videoService.getVideo(id);
-  }
-
-  /**
-   * Returns all videos.
-   *
-   * @return The videos.
-   */
+  /** List all videos. */
   @GetMapping
-  public List<Video> getVideos() {
-    return videoService.getVideos();
+  public List<VideoDto> listVideos() {
+    List<Video> videos = fileSystemVideoService.findAll();
+    return VideoDto.convert(videos);
   }
 
-  /**
-   * Deletes the video with the given id.
-   *
-   * @param id The id of the video to delete.
-   */
-  @DeleteMapping("/{id}")
-  public void deleteVideo(@PathVariable("id") Integer id) {
-    videoService.deleteVideo(id);
+  // public ResponseEntity<List<Video>> listUploadedFiles(Model model) throws IOException {
+
+  //   List<Video> videos =
+  //       videoService
+  //           .loadAll()
+  //           .map(
+  //               path -> {
+  //                 String filename = path.getFileName().toString();
+  //                 String url =
+  //                     MvcUriComponentsBuilder.fromMethodName(
+  //                             VideoController.class, "getFile", path.getFileName().toString())
+  //                         .build()
+  //                         .toString();
+  //                 return new Video(filename, url);
+  //               })
+  //           .collect(Collectors.toList());
+  //   return ResponseEntity.status(HttpStatus.OK).body(videos);
+  // }
+
+  /** Serve the file by its name. */
+  @GetMapping("/files/{filename:.+}")
+  public ResponseEntity<Resource> getFile(@PathVariable String filename) {
+
+    Resource file = videoService.loadAsResource(filename);
+    return ResponseEntity.ok()
+        .header(
+            HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+        .body(file);
+  }
+
+  /** Upload a video. */
+  @PostMapping("/{id}")
+  public ResponseEntity<?> handleFileUpload(
+      @PathVariable("id") Integer id, @RequestParam("file") MultipartFile file) {
+    videoService.uploadAndSave(id, file);
+    Map<String, String> response =
+        Map.of("message", "Video " + file.getOriginalFilename() + " uploaded successfully!");
+    return ResponseEntity.ok().body(response);
+  }
+
+  @ExceptionHandler(VideoNotFoundException.class)
+  public ResponseEntity<?> handleStorageFileNotFound(VideoNotFoundException exc) {
+    return ResponseEntity.notFound().build();
   }
 }
