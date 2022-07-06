@@ -35,4 +35,20 @@ public class DeliveryService {
   public List<Delivery> getDeliveries() {
     return deliveryRepository.findAll();
   }
+
+  /** Update a delivery. */
+  public Delivery update(Integer id, Delivery delivery) {
+    Delivery deliveryToUpdate = deliveryRepository.findById(id).orElse(null);
+    if (deliveryToUpdate != null) {
+      deliveryToUpdate.setDestiny(delivery.getDestiny());
+      deliveryToUpdate.setStatus(delivery.getStatus());
+      deliveryRepository.save(deliveryToUpdate);
+    }
+    return deliveryToUpdate;
+  }
+
+  /** Delete a delivery. */
+  public void delete(Integer id) {
+    deliveryRepository.deleteById(id);
+  }
 }
