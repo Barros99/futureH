@@ -93,7 +93,7 @@ Siga os passos abaixo para colocar o app em produção:
 
 A documentação pode ser acessada no endereço abaixo:
  ```js
-   http://localhost/swagger-ui.html
+   http://localhost:8080/swagger-ui.html
    ```
 <p align="right">(<a href="#top">back to top</a>)</p>
 
