@@ -5,7 +5,6 @@ import com.future8.droneapp.repository.DeliveryRepository;
 import com.future8.droneapp.repository.DroneRepository;
 import java.time.LocalDate;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,22 +15,20 @@ public class DeliveryService {
   @Autowired private DroneRepository droneRepository;
 
   /** Create a new delivery. */
-  public Delivery create(Delivery deliveryRequest) {
+  public Delivery create(Integer droneId, Delivery deliveryRequest) {
     Delivery delivery = new Delivery();
     delivery.setDeliveredDate(LocalDate.now());
     delivery.setDestiny(deliveryRequest.getDestiny());
     delivery.setStatus(deliveryRequest.getStatus());
 
-    Integer lol = deliveryRequest.getDrone().getId();
-
     droneRepository
-        .findById(deliveryRequest.getDrone().getId())
+        .findById(droneId)
         .ifPresent(
             drone -> {
               delivery.setDrone(drone);
             });
-
-    return deliveryRepository.save(delivery);
+    deliveryRepository.save(delivery);
+    return delivery;
   }
 
   /** Get all deliveries. */
