@@ -12,6 +12,7 @@
     <li><a href="#tecnologias-utilizadas">Tecnologias utilizadas</a></li>
     <li><a href="#requisitos-necessários">Requisitos necessários</a></li>
     <li><a href="#como-utilizar">Como utilizar</a></li>
+    <li><a href="#documentação-da-api">Documentação da api</a></li>
     <li><a href="#licença-e-referências">Licença e referências</a></li>
     <li><a href="#contato">Contato</a></li>
   </ol>
@@ -75,17 +76,25 @@ Siga os passos abaixo para colocar o app em produção:
    ```
 4. Para acessar o endpoint do drone, copie e cole o endereço abaixo no seu navegador
    ```js
-   http://localhost/drone
+   http://localhost:8080/drone
    ```
 5. Para acessar o endpoint do delivery, copie e cole o endereço abaixo no seu navegador
    ```js
-   http://localhost/delivery
+   http://localhost:8080/delivery
    ```
 6. Para acessar o endpoint do vídeo, copie e cole o endereço abaixo no seu navegador
    ```js
-   http://localhost/video
+   http://localhost:8080/video
    ```
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Documentação da API
+
+A documentação pode ser acessada no endereço abaixo:
+ ```js
+   http://localhost/swagger-ui.html
+   ```
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- LICENSE -->
