@@ -1,77 +1,21 @@
 package com.future8.droneapp.service;
 
-import com.future8.droneapp.model.Video;
-import com.future8.droneapp.repository.DeliveryRepository;
-import com.future8.droneapp.repository.VideoRepository;
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.nio.file.Path;
+import java.util.stream.Stream;
+import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
-@Service
-public class VideoService {
+public interface VideoService {
 
-  @Autowired private VideoRepository videoRepository;
-  @Autowired private DeliveryRepository deliveryRepository;
+  void init();
 
-  /**
-   * Creates a new video and saves it to the database.
-   *
-   * @param id The id to which the video belongs.
-   * @param video The video file.
-   * @return The newly created video.
-   * @throws IOException If the video file could not be read.
-   */
-  public Video uploadAndSave(Integer id, MultipartFile video) throws IOException {
+  void uploadAndSave(Integer id, MultipartFile file);
 
-    String videoName = video.getOriginalFilename();
-    Video videoDb = new Video(videoName, video.getBytes());
+  Stream<Path> loadAll();
 
-    deliveryRepository
-        .findById(id)
-        .ifPresent(
-            delivery -> {
-              videoDb.setDelivery(delivery);
-            });
+  Path load(String filename);
 
-    return videoRepository.save(videoDb);
-  }
+  Resource loadAsResource(String filename);
 
-  /**
-   * Returns the video with the given id.
-   *
-   * @param id The id of the video to return.
-   * @return The video with the given id.
-   */
-  public Video getVideo(Integer id) {
-    Optional<Video> optional = videoRepository.findById(id);
-    if (optional.isPresent()) {
-      return optional.get();
-    } else {
-      return null;
-    }
-  }
-
-  /**
-   * Returns all videos.
-   *
-   * @return The videos.
-   */
-  public List<Video> getVideos() {
-    return videoRepository.findAll();
-  }
-
-  /**
-   * Deletes the video with the given id.
-   *
-   * @param id The id of the video to delete.
-   */
-  public void deleteVideo(Integer id) {
-    Optional<Video> optional = videoRepository.findById(id);
-    if (optional.isPresent()) {
-      videoRepository.delete(optional.get());
-    }
-  }
+  void deleteAll();
 }
