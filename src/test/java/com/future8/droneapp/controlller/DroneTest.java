@@ -44,7 +44,7 @@ public class DroneTest {
 
   @Test
   @DisplayName("2 - List all drones")
-  public void retornaTodosOsDrones() throws Exception {
+  public void listAll() throws Exception {
     Drone drone = new Drone(15151, 46545);
     Drone drone2 = new Drone(2020, 2020);
 
@@ -60,7 +60,7 @@ public class DroneTest {
 
   @Test
   @DisplayName("3 - Drone can be edited with sucess")
-  public void atualizaStatusDrone() throws Exception {
+  public void update() throws Exception {
     Drone drone = new Drone(15151, 46545);
     droneRepository.save(drone);
 
@@ -75,7 +75,7 @@ public class DroneTest {
   }
 
   @Test
-  public void deletaDronePeloId() throws Exception {
+  public void delete() throws Exception {
     Drone drone = new Drone(15151, 46545);
     droneRepository.save(drone);
 

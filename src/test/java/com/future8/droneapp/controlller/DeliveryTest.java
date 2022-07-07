@@ -55,7 +55,7 @@ public class DeliveryTest {
 
   @Test
   @DisplayName("2 - List all deliveries")
-  public void retornaTodosOsDrones() throws Exception {
+  public void listAll() throws Exception {
     Delivery delivery = new Delivery();
     delivery.setDeliveredDate(LocalDate.now());
     delivery.setDestiny("destiny");
@@ -71,7 +71,7 @@ public class DeliveryTest {
 
   @Test
   @DisplayName("3 - Delivery can be edited with sucess")
-  public void atualizaStatusDrone() throws Exception {
+  public void update() throws Exception {
     Delivery delivery = new Delivery();
     delivery.setDeliveredDate(LocalDate.now());
     delivery.setDestiny("destiny");
@@ -92,7 +92,7 @@ public class DeliveryTest {
 
   @Test
   @DisplayName("4 - Delivery can be deleted with sucess")
-  public void deletaDronePeloId() throws Exception {
+  public void delete() throws Exception {
     Delivery delivery = new Delivery();
     delivery.setDeliveredDate(LocalDate.now());
     delivery.setDestiny("destiny");
